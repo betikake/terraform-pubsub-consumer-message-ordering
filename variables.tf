@@ -44,6 +44,9 @@ variable "available_cpu" {
   type    = string
 }
 
+variable "max_instance_request_concurrency" {
+  default = 1
+}
 variable "entry_point" {
   type = string
 }

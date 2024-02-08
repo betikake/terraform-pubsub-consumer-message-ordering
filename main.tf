@@ -90,16 +90,17 @@ resource "google_cloudfunctions2_function" "default" {
 
 
   service_config {
-    available_memory               = var.available_memory
-    available_cpu                  = var.available_cpu
-    vpc_connector                  = var.vpc_connector
-    service_account_email          = var.service_account_email
-    max_instance_count             = var.max_instance
-    min_instance_count             = var.min_instance
-    all_traffic_on_latest_revision = true
-    ingress_settings               = "ALLOW_INTERNAL_ONLY"
-    environment_variables          = var.environment_variables
-    timeout_seconds                = var.timeout
+    available_memory                 = var.available_memory
+    available_cpu                    = var.available_cpu
+    max_instance_request_concurrency = var.max_instance_request_concurrency
+    vpc_connector                    = var.vpc_connector
+    service_account_email            = var.service_account_email
+    max_instance_count               = var.max_instance
+    min_instance_count               = var.min_instance
+    all_traffic_on_latest_revision   = true
+    ingress_settings                 = "ALLOW_INTERNAL_ONLY"
+    environment_variables            = var.environment_variables
+    timeout_seconds                  = var.timeout
   }
 
   event_trigger {
