@@ -37,6 +37,7 @@ resource "google_pubsub_subscription" "default" {
     }
   }
   enable_message_ordering = true
+  ack_deadline_seconds    = 600
 }
 
 resource "random_id" "bucket_prefix" {
