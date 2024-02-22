@@ -20,12 +20,16 @@ resource "google_pubsub_topic" "default" {
   schema_settings {
     schema   = "projects/${var.fun_project_id}/schemas/${google_pubsub_schema.default.name}"
     encoding = "BINARY"
-
   }
 }
 
 resource "google_pubsub_topic" "default_dlq" {
   name = "${var.pubsub_topic}_dlq"
+
+  schema_settings {
+    schema   = "projects/${var.fun_project_id}/schemas/${google_pubsub_schema.default.name}"
+    encoding = "BINARY"
+  }
 }
 
 resource "google_pubsub_subscription" "default" {
@@ -47,6 +51,14 @@ resource "google_pubsub_subscription" "default" {
     dead_letter_topic = google_pubsub_topic.default_dlq.id
     max_delivery_attempts = 10
   }
+}
+
+resource "google_pubsub_subscription" "default_dlq" {
+  name  = "${var.pubsub_topic}_dlq"
+  topic = google_pubsub_topic.default_dlq.name
+
+  enable_message_ordering = true
+  ack_deadline_seconds    = 600
 }
 
 resource "random_id" "bucket_prefix" {
