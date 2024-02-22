@@ -49,6 +49,14 @@ resource "google_pubsub_subscription" "default" {
   }
 }
 
+resource "google_pubsub_subscription" "default_dlq" {
+  name  = "${var.pubsub_topic}_dlq"
+  topic = google_pubsub_topic.default_dlq.name
+
+  enable_message_ordering = true
+  ack_deadline_seconds    = 600
+}
+
 resource "random_id" "bucket_prefix" {
   byte_length = var.bucket_prefix_length
 }
