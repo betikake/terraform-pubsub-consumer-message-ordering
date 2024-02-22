@@ -24,6 +24,10 @@ resource "google_pubsub_topic" "default" {
   }
 }
 
+resource "google_pubsub_topic" "default_dlq" {
+  name = "${var.pubsub_topic}_dlq"
+}
+
 resource "google_pubsub_subscription" "default" {
   name  = var.pubsub_topic
   topic = google_pubsub_topic.default.name
@@ -38,6 +42,11 @@ resource "google_pubsub_subscription" "default" {
   }
   enable_message_ordering = true
   ack_deadline_seconds    = 600
+
+  dead_letter_policy {
+    dead_letter_topic = google_pubsub_topic.default_dlq.id
+    max_delivery_attempts = 10
+  }
 }
 
 resource "random_id" "bucket_prefix" {
