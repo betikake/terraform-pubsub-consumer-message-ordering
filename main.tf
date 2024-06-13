@@ -130,14 +130,6 @@ resource "google_cloudfunctions2_function" "default" {
 
 }
 
-resource "google_cloudfunctions2_function_iam_member" "invoker" {
-  project  = var.fun_project_id
-  region   = var.region
-  cloud_function = google_cloudfunctions2_function.default.name
-  role     = "roles/cloudfunctions.invoker"
-
-  member = "serviceAccount:${var.service_account_email}"
-}
 
 
 /*
