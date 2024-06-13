@@ -120,13 +120,13 @@ resource "google_cloudfunctions2_function" "default" {
     environment_variables            = var.environment_variables
     timeout_seconds                  = var.timeout
   }
-
+/*
   event_trigger {
     trigger_region = var.region
     event_type     = "google.cloud.pubsub.topic.v1.messagePublished"
     pubsub_topic   = google_pubsub_topic.default.id
     retry_policy   = "RETRY_POLICY_RETRY"
-  }
+  }*/
 
 }
 
