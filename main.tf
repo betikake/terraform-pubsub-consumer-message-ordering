@@ -130,15 +130,13 @@ resource "google_cloudfunctions2_function" "default" {
 
 }
 
-resource "google_cloud_run_service_iam_binding" "default" {
-  location = var.region
+resource "google_cloudfunctions2_function_iam_member" "invoker" {
   project  = var.fun_project_id
-  service  = google_cloudfunctions2_function.default.name
-  role     = "roles/run.invoker"
+  region   = var.region
+  cloud_function = google_cloudfunctions2_function.default.name
+  role     = "roles/cloudfunctions.invoker"
 
-  members = [
-    "serviceAccount:${var.service_account_email}"
-  ]
+  member = "serviceAccount:${var.service_account_email}"
 }
 
 
