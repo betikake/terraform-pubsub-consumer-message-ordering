@@ -29,7 +29,7 @@ resource "google_pubsub_topic" "default_dlq" {
 }
 
 resource "google_pubsub_subscription" "default" {
-  name  = var.pubsub_topic
+  name  = var.pubsub_subscription
   topic = google_pubsub_topic.default.name
 
   push_config {

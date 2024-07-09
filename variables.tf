@@ -83,6 +83,11 @@ variable "pubsub_topic" {
   default = ""
 }
 
+variable "pubsub_subscription" {
+  type    = string
+  default = ""
+}
+
 variable "schema_name" {
   type    = string
   default = ""
