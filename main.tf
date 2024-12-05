@@ -41,7 +41,7 @@ resource "google_pubsub_subscription" "default" {
     }
   }
   enable_message_ordering = true
-  ack_deadline_seconds    = 600
+  ack_deadline_seconds    = 40
 
   dead_letter_policy {
     dead_letter_topic = google_pubsub_topic.default_dlq.id
@@ -54,7 +54,7 @@ resource "google_pubsub_subscription" "default_dlq" {
   topic = google_pubsub_topic.default_dlq.name
 
   enable_message_ordering = true
-  ack_deadline_seconds    = 600
+  ack_deadline_seconds    = 40
 }
 
 resource "random_id" "bucket_prefix" {
