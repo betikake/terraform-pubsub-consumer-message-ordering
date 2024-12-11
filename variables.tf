@@ -7,6 +7,12 @@ variable "fun_project_id" {
   type        = string
 }
 
+variable "img_project_id" {
+  description = "The ID of the Google Cloud project where the Image is stored."
+  type        = string
+}
+
+
 variable "bucket_prefix_length" {
   default = 10
 }
