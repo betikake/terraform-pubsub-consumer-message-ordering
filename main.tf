@@ -45,7 +45,7 @@ resource "google_pubsub_subscription" "default" {
 
   dead_letter_policy {
     dead_letter_topic = google_pubsub_topic.default_dlq.id
-    max_delivery_attempts = 3
+    max_delivery_attempts = 5
   }
 }
 
