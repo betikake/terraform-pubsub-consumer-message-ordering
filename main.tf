@@ -40,8 +40,7 @@ resource "google_pubsub_subscription" "default" {
       audience              = "${google_cloudfunctions2_function.default.service_config[0].uri}/"
     }
   }
-  
-  enable_exactly_once_delivery = true
+
   enable_message_ordering = true
   ack_deadline_seconds    = var.timeout
 
