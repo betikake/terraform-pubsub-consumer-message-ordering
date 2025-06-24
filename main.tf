@@ -41,11 +41,11 @@ resource "google_pubsub_subscription" "default" {
     }
   }
   enable_message_ordering = true
-  ack_deadline_seconds    = 40
+  ack_deadline_seconds    = var.timeout
 
   dead_letter_policy {
     dead_letter_topic = google_pubsub_topic.default_dlq.id
-    max_delivery_attempts = 5
+    max_delivery_attempts = 3
   }
 }
 
@@ -54,7 +54,7 @@ resource "google_pubsub_subscription" "default_dlq" {
   topic = google_pubsub_topic.default_dlq.name
 
   enable_message_ordering = true
-  ack_deadline_seconds    = 40
+  ack_deadline_seconds    = var.timeout
 }
 
 resource "random_id" "bucket_prefix" {
